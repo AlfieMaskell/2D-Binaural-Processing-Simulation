@@ -1,0 +1,15 @@
+# Ignore build files
+/build/
+*.obj
+*.pdb
+*.lib
+*.dll
+*.exe
+*.log
+
+# Ignore CMake cache
+CMakeCache.txt
+CMakeFiles/
+
+# Ignore Visual Studio Temp Files
+.vs/

@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.10)
+project(BinauralSimulation)
+
+set(CMAKE_CXX_STANDARD 17)
+
+# Find OpenGL
+find_package(OpenGL REQUIRED)
+
+# Include GLFW
+add_library(glfw STATIC IMPORTED)
+set_target_properties(glfw PROPERTIES
+    IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libs/glfw/lib-vc2022/glfw3.lib"
+    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/libs/glfw/include"
+)
+
+# Include GLEW
+add_library(glew STATIC IMPORTED)
+set_target_properties(glew PROPERTIES
+    IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libs/glew/lib/Release/x64/glew32s.lib"
+    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/libs/glew/include"
+)
+
+# Include Directories
+include_directories(${CMAKE_SOURCE_DIR}/libs/glfw/include)
+include_directories(${CMAKE_SOURCE_DIR}/libs/glew/include)
+
+# Add Executable
+add_executable(BinauralSimulation src/main.cpp)
+
+# Link Libraries
+target_link_libraries(BinauralSimulation OpenGL::GL glfw glew)
